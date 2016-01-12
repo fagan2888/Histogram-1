@@ -21,7 +21,7 @@ class MyForm(QtGui.QMainWindow):
         self.octave.pkg('load', 'image')
 
         self.ui.comboBox.addItem("Uniform")
-        self.ui.comboBox.addItem("Adaptive")
+        #self.ui.comboBox.addItem("Adaptive")
         self.ui.comboBox.setCurrentIndex(0)
 
         self.ui.loadButton.clicked.connect(self.openFile)
@@ -61,13 +61,14 @@ class MyForm(QtGui.QMainWindow):
     def compare(self):
         # self.octave.present(self.image, self.img_cor)
         plt.figure(1)
-        plt.subplot(2,1,1)
+        plt.subplot(1,2,1)
         plt.imshow(self.orgcmp)
-        plt.subplot(2,1,2)
-        plt.hist(numpy.array(self.image).flatten(), 256, range=(0.0,1.0), fc='k', ec='k')
-        plt.subplot(2,1,2)
+	plt.title("Original image")
+        plt.subplot(1,2,2)
         plt.imshow(self.img_cor)
+	plt.title("Equalized image")
         plt.show()
+
 
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
